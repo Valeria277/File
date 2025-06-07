@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.example.project.FileTransferViewModel
 import org.example.project.theme.Actor
-import org.example.project.utils.copyToClipboard
+import org.example.project.utils.CopyToClipboard
 
 @Composable
 fun Link(
@@ -31,12 +31,10 @@ fun Link(
     val link by viewModel.downloadLink.collectAsState()
     var clicked by remember { mutableStateOf(false) }
 
-    LaunchedEffect(clicked) {
-        if (clicked && link != null) {
-            copyToClipboard(link!!)
-            viewModel.showNotification("Link copied to clipboard")
-            clicked = false
-        }
+    if(clicked) {
+        CopyToClipboard(link!!)
+        viewModel.showNotification("Link copied to clipboard")
+        clicked = false
     }
 
     if (link != null) {

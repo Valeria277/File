@@ -13,14 +13,12 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+    androidTarget()
+    jvm("desktop") {
+        compilations.all {
+            kotlinOptions.jvmTarget = "11"
         }
     }
-    
-    jvm("desktop")
     
     sourceSets {
         val desktopMain by getting
@@ -28,10 +26,11 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.core.ktx.v1101)
 
-            implementation("io.ktor:ktor-client-android:3.0.2")
-            implementation("androidx.activity:activity-compose:1.8.0")
-            implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+            implementation(libs.ktor.client.android)
+            implementation(libs.androidx.activity.compose.v180)
+            implementation (libs.kotlinx.serialization.json)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,9 +42,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            implementation("io.ktor:ktor-client-core:3.0.2")
-            implementation("io.ktor:ktor-client-content-negotiation:3.0.2")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.2")
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -54,7 +53,7 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
 
-            implementation("io.ktor:ktor-client-cio:3.0.2")
+            implementation(libs.ktor.client.cio)
         }
     }
 }

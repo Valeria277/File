@@ -7,13 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -31,13 +28,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinproject.composeapp.generated.resources.ic_clock
 import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.ic_pencil
+import kotlinproject.composeapp.generated.resources.ic_padlock
 import org.example.project.FileTransferViewModel
 import org.example.project.theme.Actor
 import org.jetbrains.compose.resources.painterResource
@@ -213,7 +210,6 @@ fun MaxDownloads(viewModel: FileTransferViewModel) {
 
 @Composable
 fun AutoDelete(viewModel: FileTransferViewModel){
-    var checked by remember { mutableStateOf(false) }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -225,9 +221,9 @@ fun AutoDelete(viewModel: FileTransferViewModel){
             modifier = Modifier.padding(start = 16.dp)
         ) {
             Image(
-                painterResource(Res.drawable.ic_clock),
+                painterResource(Res.drawable.ic_padlock),
                 "icon",
-                Modifier.size(20.dp)
+                Modifier.size(25.dp)
             )
             Text(
                 text = "Auto delete",

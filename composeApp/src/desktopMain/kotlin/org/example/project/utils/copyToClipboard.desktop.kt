@@ -7,7 +7,7 @@ import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
 @Composable
-actual fun copyToClipboard(text: String) {
+actual fun CopyToClipboard(text: String) {
     val clipboard = Toolkit.getDefaultToolkit().systemClipboard
     val stringSelection = StringSelection(text)
     clipboard.setContents(stringSelection, null)

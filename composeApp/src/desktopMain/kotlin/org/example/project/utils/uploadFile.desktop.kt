@@ -16,15 +16,10 @@ actual fun UploadFile(
 
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             val file = fileChooser.selectedFile
-            println("DEBUG: Selected file: ${file.absolutePath}")
             val bytes = file.readBytes()
-            println("DEBUG: File size: ${bytes.size} bytes")
             onFileUploaded(bytes, file.name)
-        } else {
-            println("DEBUG: File selection cancelled")
         }
     } catch (e: Exception) {
-        println("DEBUG: File selection error: ${e.message}")
         onError(e)
     }
 }
